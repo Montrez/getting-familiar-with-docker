@@ -68,5 +68,6 @@ Next we need to build the image:
 docker build -f Dockerfile -t docker-spring-boot
 ```
 -f indicator for file
+
 -t indicator for tagname
 docker-spring-boot is the name of our image.
