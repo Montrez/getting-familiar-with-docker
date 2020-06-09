@@ -62,6 +62,11 @@ ENTRYPOINT ["java", "-jar", "docker-spring-boot.jar"]
 - EXPOSE will use port 8085 on localhost
 - ENTRYPOINT lists all the commands we need for java to run this build.
 
+Next we need to make sure the application knows that we are using port 8085 by updating our "application.properties" which should be located in the 'src/main/resources' package. If not, you can create the file since we only need to add one field.
+```
+server.port=8085
+```
+
 Next we need to build the image:
 
 ```
@@ -71,3 +76,15 @@ docker build -f Dockerfile -t docker-spring-boot
 
 -t indicator for tagname
 docker-spring-boot is the name of our image.
+
+After building, which may take a while if it's your first time. We will check that the image is created.
+```
+docker images
+```
+This command should list all of the images that we have created on Docker. We should see 'docker-spring-boot' as the most recent image at the top.
+
+Now lets run the container with the image. On sucess, this will allow us to see Hello World on http://localhost:8085/rest/docker/hello. 
+Run:
+```
+docker run -p 8085:8085 docker-spring-boot
+```
