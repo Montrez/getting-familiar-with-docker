@@ -88,3 +88,5 @@ Run:
 ```
 docker run -p 8085:8085 docker-spring-boot
 ```
+
+Now if we ever need to change anything we can just rebuild using the Dockerfile and the build command from earlier and rerun the application with the command above.
