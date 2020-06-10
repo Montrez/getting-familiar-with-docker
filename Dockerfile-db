@@ -1,0 +1,4 @@
+FROM openjdk:8
+ADD target/users-mysql.jar name-mysql.jar
+EXPOSE 8086
+ENTRYPOINT ["java", "-jar", "name-mysql.jar"]
