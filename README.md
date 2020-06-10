@@ -67,6 +67,11 @@ Next we need to make sure the application knows that we are using port 8085 by u
 server.port=8085
 ```
 
+To create our database we will need to exectute this command
+```
+docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=Naruto12 -d mysql:5.6
+```
+
 Next we need to build the image:
 
 ```
