@@ -68,9 +68,18 @@ server.port=8085
 ```
 
 To create our database we will need to exectute this command "root" user
-MAKE SURE YOU DO NOT HAVE A MYSQL RUNNING ALREADY.
+
+***MAKE SURE YOU DO NOT HAVE A MYSQL RUNNING ALREADY.
+
+
 ```
 docker run  -p 3306:3306 -p 33060:33060 --name mysql-standalone -e MYSQL_ROOT_PASSWORD=Naruto12 -d mysql:5.6
+```
+
+Might have to stop all other containers and rename this container if you receive this error:
+
+```
+docker: Error response from daemon: Conflict. The container name "/mysql-standalone1" is already in use by container "[containerId]". You have to remove (or rename) that container to be able to reuse that name.
 ```
 
 Next we need to build the image:
