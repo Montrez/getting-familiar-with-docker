@@ -69,6 +69,10 @@ server.port=8085
 
 To create our database we will need to exectute this command "root" user
 
+Have to map the ports from inside the container to outside the container.
+
+Install Mysql workbench to make sure that we can connect to the container from the outside.
+
 ***MAKE SURE YOU DO NOT HAVE A MYSQL RUNNING ALREADY.
 
 
@@ -81,6 +85,8 @@ Might have to stop all other containers and rename this container if you receive
 ```
 docker: Error response from daemon: Conflict. The container name "/mysql-standalone1" is already in use by container "[containerId]". You have to remove (or rename) that container to be able to reuse that name.
 ```
+
+Use host.docker.internal instead 
 
 Next we need to build the image:
 
