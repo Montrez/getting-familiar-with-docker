@@ -109,5 +109,9 @@ Run:
 ```
 docker run -p 8085:8085 docker-spring-boot
 ```
+Errors that came up include: 
+
+Error: unable to access jar file.
+Fix: Used sudo and issue disappeared. 
 
 Now if we ever need to change anything we can just rebuild using the Dockerfile and the build command from earlier and rerun the application with the command above.
