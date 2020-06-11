@@ -93,6 +93,12 @@ Errors that came up include:
 Error: unable to access jar file.
 Fix: Used sudo and issue disappeared. 
 
+If needed we can go into a container with:
+
+```
+docker exec -it {container_id} /bin/bash
+```
+
 Now if we ever need to change anything we can just rebuild using the Dockerfile and the build command from earlier and rerun the application with the command above.
 
 To create our database we will need to exectute this command "root" user
@@ -114,4 +120,4 @@ Might have to stop all other containers and rename this container if you receive
 docker: Error response from daemon: Conflict. The container name "/mysql-standalone1" is already in use by container "[containerId]". You have to remove (or rename) that container to be able to reuse that name.
 ```
 
-Use host.docker.internal instead 
+Use host.docker.internal.docker instead 
