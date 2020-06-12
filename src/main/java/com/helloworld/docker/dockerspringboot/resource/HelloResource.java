@@ -8,9 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/rest/docker/hello")
 public class HelloResource {
 	
+	@Autowired
+	public UsersController usersController;
+	
 	@GetMapping
 	public String hello() {
-		return "Hello World";
+		Users testUser = usersController.getUserByName("Charles Weems");
+		System.out.println("This user's name is: " + testUser.getName());
+		return "This user is: " + testUser.getName();
 	}
 
 }
