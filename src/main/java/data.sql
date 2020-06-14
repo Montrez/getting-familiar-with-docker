@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS `attorneygo_schema`;
+DROP DATABASE IF EXISTS `attorneygo_db`;
 
-CREATE DATABASE `attorneygo_schema`;
+CREATE DATABASE `attorneygo_db`;
 
 USE `attorneygo_schema`;
 
