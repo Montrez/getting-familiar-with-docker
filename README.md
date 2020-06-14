@@ -120,4 +120,14 @@ Might have to stop all other containers and rename this container if you receive
 docker: Error response from daemon: Conflict. The container name "/mysql-standalone1" is already in use by container "[containerId]". You have to remove (or rename) that container to be able to reuse that name.
 ```
 
-Use host.docker.internal.docker instead 
+Use jdbc:mysql://mysql-standalone:3306/attorneygo_db instead for the database connection in the applications.properties file.
+
+In order to interact with our new container and mirrror our working directory with the container we could use this command:
+```
+docker run -v “{Project Directory}:/home“ --it —name docker-mysql --link mysql-standalone:mysql -p 8086:8086 docker-spring-boot —entrypoint /bin/bash
+```
+We can add debug to our container by using this commamnd:
+```
+mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"
+```
+
