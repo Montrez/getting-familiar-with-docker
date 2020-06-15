@@ -1,5 +1,7 @@
 # getting-familiar-with-docker
 
+## Step 1: Installing Spring Boot
+
 Getting Started using Java Spring Boot with MyEclipse/Eclipse:
 
 - Will need Docker installed on local computer.
@@ -30,6 +32,16 @@ public class HelloResource {
 @RequestMapping("/rest/docker/hello") creates the mapping for the url.
 @GetMapping simply takes that mapping and prints out the contents of this method on that url path.
 
+
+### Step 1.1: Installing Docker 
+If Docker is not installed on your computer you can follow this link: https://docs.docker.com/get-docker/
+
+This link will take you to a page that will allow you to install the latest updates for Windows, Mac, Linux. 
+
+After installing Docker you will need to setup your Dockerhub account so that we can save our images: https://hub.docker.com/signup
+
+
+### Step 1.2:
 Next we will do a maven install using eclipse:
 - Right click the project and then click on 'Run As'
 - Click on Run Configurations and then select Maven Build
@@ -50,6 +62,7 @@ And do the following:
 		<finalName>docker-spring-boot</finalName>
 </build>
 ```
+## Step 2: Building a Dockerfile
 Now we will create the Dockerfile
 ```
 FROM openjdk:8
@@ -98,6 +111,8 @@ If needed we can go into a container with:
 ```
 docker exec -it {container_id} /bin/bash
 ```
+
+## Step 3: Settting up MySql
 
 Now if we ever need to change anything we can just rebuild using the Dockerfile and the build command from earlier and rerun the application with the command above.
 
