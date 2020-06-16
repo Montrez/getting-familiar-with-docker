@@ -151,7 +151,7 @@ docker: Error response from daemon: Conflict. The container name "/mysql-standal
 
 Use jdbc:mysql://mysql-standalone:3306/attorneygo_db instead for the database connection in the applications.properties file. This is the name of our new container and we need to access that information from our Spring boot application. 
 
-## Step 4:
+## Step 4: Using Docker Volumes to link Workspace
 
 In order to interact with our new container and mirrror our working directory with the container we could use this command:
 ```
@@ -163,4 +163,22 @@ This will remove the need to have to rebuild or Dockerfile everytime we make a c
 We can add debug to our container by using this commamnd:
 ```
 mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"
+```
+
+## Step 5: Pushing to Dockerhub
+Just like with Github we'll want to save our own files, images, somewhere to use them again. This way we can pull directly from our own directories. 
+First lets login:
+
+```
+docker login
+```
+In the web browser we can create the repository on dockerhub. This way it will already be created and we can push to this repository.
+
+Next we should tag a image. It further documents what we will use it for later.
+```
+docker tag {image_id} yourhubusername/{image_name}:{tag}
+```
+Now we can push the image to our dockerhub.
+```
+docker push yourhubusername/{image_name}
 ```
