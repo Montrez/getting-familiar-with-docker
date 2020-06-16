@@ -142,6 +142,11 @@ If all went well we should now have a container that is actively running our mys
 ```
 docker ps or docker container ls -a
 ```
+To create a database we can either connect to it via mysql workbench or through the container itself using:
+```
+docker exec -it [container_name] mysql -uroot -p
+```
+This will prompt us for the password we specified when we created the mysql container. Inside we can run regular sql commands to set up our database.
 
 Might have to stop all other containers and rename this container if you receive this error:
 
