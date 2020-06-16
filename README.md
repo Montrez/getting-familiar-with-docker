@@ -83,7 +83,7 @@ server.port=8085
 Next we need to build the image:
 
 ```
-docker build -f Dockerfile -t docker-spring-boot
+docker build -f Dockerfile -t docker-spring-boot .
 ```
 -f indicator for file
 
