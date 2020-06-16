@@ -114,7 +114,7 @@ docker exec -it {container_id} /bin/bash
 
 ## Step 3: Settting up MySql
 
-Now if we ever need to change anything we can just rebuild using the Dockerfile and the build command from earlier and rerun the application with the command above.
+Now if we ever need to change anything we can just rebuild using the Dockerfile and the build command from earlier and rerun the application with the 'docker build' command above. Currently that is the case. 
 
 To create our database we will need to exectute this command "root" user
 
@@ -122,11 +122,25 @@ Have to map the ports from inside the container to outside the container.
 
 Install Mysql workbench to make sure that we can connect to the container from the outside.
 
-***MAKE SURE YOU DO NOT HAVE A MYSQL RUNNING ALREADY.
+***MAKE SURE YOU DO NOT HAVE THE MYSQL SERVER RUNNING ALREADY.
 
+We'll need to first pull down a version of mysql from dockerhub. Here's a link to check out the different versions: https://hub.docker.com/_/mysql.
+
+However we can simply checkout the latest version with this command:
+```
+docker pull mysql
+```
+This by default will pull down the latest image version for mysql. 
+
+Now we can run our new image inside of a container like so:
 
 ```
-docker run  -p 3306:3306 -p 33060:33060 --name mysql-standalone -e MYSQL_ROOT_PASSWORD=Naruto12 -d mysql:5.6
+docker run  -p 3306:3306 -p 33060:33060 --name mysql-standalone -e MYSQL_ROOT_PASSWORD={your_password} -d mysql:{mysql_version}
+```
+If all went well we should now have a container that is actively running our mysql image and we can take a look in our docker dashboard which is installed with Docker or run:
+
+```
+docker ps or docker container ls -a
 ```
 
 Might have to stop all other containers and rename this container if you receive this error:
@@ -135,14 +149,18 @@ Might have to stop all other containers and rename this container if you receive
 docker: Error response from daemon: Conflict. The container name "/mysql-standalone1" is already in use by container "[containerId]". You have to remove (or rename) that container to be able to reuse that name.
 ```
 
-Use jdbc:mysql://mysql-standalone:3306/attorneygo_db instead for the database connection in the applications.properties file.
+Use jdbc:mysql://mysql-standalone:3306/attorneygo_db instead for the database connection in the applications.properties file. This is the name of our new container and we need to access that information from our Spring boot application. 
+
+## Step 4:
 
 In order to interact with our new container and mirrror our working directory with the container we could use this command:
 ```
 docker run -v “{Project Directory}:/home“ --it —name docker-mysql --link mysql-standalone:mysql -p 8086:8086 docker-spring-boot —entrypoint /bin/bash
 ```
+
+This will remove the need to have to rebuild or Dockerfile everytime we make a change. If you change directories into the home folder inside this container we should see the same folders and files that we have in our working directory. 
+
 We can add debug to our container by using this commamnd:
 ```
 mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"
 ```
-
